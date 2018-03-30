@@ -15,13 +15,11 @@ public class PreferenceHandler {
   private static Font font;
   private InputStream fontFile;
   private float fontSize;
-  private String text;
 
   public PreferenceHandler() {
     prefs = Preferences.userRoot();
     fontFile = getClass().getResourceAsStream("/files/FiraCode-Retina.otf");
     fontSize = prefs.getFloat("fontSize", 24.0F);
-    text = prefs.get("text", null);
   }
   
   public float getFontSize() {
@@ -34,11 +32,7 @@ public class PreferenceHandler {
     TextEditorFrame.getTextArea().setFont(font);
   }
   
-  public String getText() {
-    return text;
-  }
-  
-  public void configureFont() {
+  public void configureFont() {  // Enable ligatures from FiraCode
     try {
       HashMap<TextAttribute, Object> map = new HashMap<>();
       map.put(TextAttribute.LIGATURES, TextAttribute.LIGATURES_ON);

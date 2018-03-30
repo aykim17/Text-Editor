@@ -3,8 +3,11 @@ package TextEditor;
 import java.awt.*;
 import javax.swing.*;
 
-public class TextEditorFrame extends JFrame
-{
+/**
+ * GUI for the text editor
+ */
+
+public class TextEditorFrame extends JFrame {
   private static JTextArea textField;
   private PreferenceHandler prefs;
   
@@ -20,7 +23,6 @@ public class TextEditorFrame extends JFrame
     textField = new JTextArea();
     textField.setLineWrap(true);
     textField.setMargin(new java.awt.Insets(20, 20, 20, 20));
-    textField.setText(prefs.getText());
     textField.setCaretPosition(textField.getDocument().getLength());
     handleColorScheme();
     prefs.configureFont();
@@ -35,7 +37,7 @@ public class TextEditorFrame extends JFrame
     return textField;
   }
   
-  private void handleColorScheme() {
+  private void handleColorScheme() {  // Sets the font and background colors
     textField.setBackground(new Color(240, 234, 210));
     textField.setTabSize(4);
     Color fontColor = new Color(192, 111, 65);
