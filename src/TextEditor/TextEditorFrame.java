@@ -9,6 +9,10 @@ import javax.swing.*;
 
 public class TextEditorFrame extends JFrame {
   private static JTextArea textField;
+  private JMenu file;
+  private JMenuItem open, save;
+  private JMenuBar menuBar;
+
   private PreferenceHandler prefs;
   
   public TextEditorFrame() {
@@ -25,6 +29,7 @@ public class TextEditorFrame extends JFrame {
     textField.setMargin(new java.awt.Insets(20, 20, 20, 20));
     textField.setCaretPosition(textField.getDocument().getLength());
     handleColorScheme();
+    handleMenuBar();
     prefs.configureFont();
     UndoHandler.addUndoCapability(textField);
     textField.addKeyListener(new KeyboardHandler());
@@ -43,5 +48,18 @@ public class TextEditorFrame extends JFrame {
     Color fontColor = new Color(192, 111, 65);
     textField.setForeground(fontColor);
     textField.setCaretColor(fontColor);
+  }
+
+  private void handleMenuBar() {  // Puts menu bar at top of frame
+    file = new JMenu("File");
+    open = new JMenuItem("Open");
+    save = new JMenuItem("Save");
+
+    file.add(open);
+    file.add(save);
+
+    menuBar = new JMenuBar();
+    menuBar.add(file);
+    setJMenuBar(menuBar);
   }
 }

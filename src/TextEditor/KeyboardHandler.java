@@ -1,5 +1,6 @@
 package TextEditor;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 /**
@@ -28,7 +29,14 @@ public class KeyboardHandler extends KeyAdapter {
     }
 
     if (ex.getKeyCode() == KeyEvent.VK_ESCAPE) {  // Exit program
-      System.exit(0);
+      // Ask if user wants to exit
+      int confirmExit = JOptionPane.showConfirmDialog(TextEditorFrame.getTextArea(),
+              "Are you sure you want to exit?",
+              "EXIT", JOptionPane.YES_NO_OPTION);
+
+      if (confirmExit == JOptionPane.YES_OPTION) {
+        System.exit(0);
+      }
     }
   }
 }
