@@ -22,24 +22,30 @@ public class TextEditorFrame extends JFrame {
     setSize(500, 300);
     setLocationRelativeTo(null);
     prefs = new PreferenceHandler();
-    
-    Container c = getContentPane();
-    textField = new JTextArea();
-    textField.setLineWrap(true);
-    textField.setMargin(new java.awt.Insets(20, 20, 20, 20));
-    textField.setCaretPosition(textField.getDocument().getLength());
+
+    handleTextField();
     handleColorScheme();
     handleMenuBar();
+
     prefs.configureFont();
-    UndoHandler.addUndoCapability(textField);
-    textField.addKeyListener(new KeyboardHandler());
-    c.add(new JScrollPane(textField));
     
     setVisible(true);
   }
   
   public static JTextArea getTextArea() {
     return textField;
+  }
+
+  private void handleTextField() {  // Adds text field to frame
+    textField = new JTextArea();
+    textField.setLineWrap(true);
+    textField.setMargin(new Insets(20, 20, 20, 20));
+    textField.setCaretPosition(textField.getDocument().getLength());
+    textField.addKeyListener(new KeyboardHandler());
+
+    Container contentPane = getContentPane();
+    UndoHandler.addUndoCapability(textField);
+    contentPane.add(new JScrollPane(textField));
   }
   
   private void handleColorScheme() {  // Sets the font and background colors
@@ -57,6 +63,8 @@ public class TextEditorFrame extends JFrame {
 
     file.add(open);
     file.add(save);
+    open.addActionListener(new OpenListener());  // Provide functionality to menu bar
+    save.addActionListener(new SaveListener());
 
     menuBar = new JMenuBar();
     menuBar.add(file);
