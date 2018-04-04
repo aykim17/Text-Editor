@@ -1,12 +1,11 @@
 package TextEditor;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * Code for opening file
  */
-public class OpenListener implements ActionListener{
+public class OpenListener implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
 

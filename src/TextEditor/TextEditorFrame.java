@@ -27,7 +27,7 @@ public class TextEditorFrame extends JFrame {
     handleColorScheme();
     handleMenuBar();
 
-    prefs.configureFont();
+    prefs.configureFont();  // Recall font size that user last used
     
     setVisible(true);
   }
@@ -40,11 +40,10 @@ public class TextEditorFrame extends JFrame {
     textField = new JTextArea();
     textField.setLineWrap(true);
     textField.setMargin(new Insets(20, 20, 20, 20));
-    textField.setCaretPosition(textField.getDocument().getLength());
     textField.addKeyListener(new KeyboardHandler());
 
-    Container contentPane = getContentPane();
     UndoHandler.addUndoCapability(textField);
+    Container contentPane = getContentPane();
     contentPane.add(new JScrollPane(textField));
   }
   
