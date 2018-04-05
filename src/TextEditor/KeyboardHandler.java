@@ -1,12 +1,13 @@
 package TextEditor;
 
-import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * Handles logic regarding key presses
  */
 public class KeyboardHandler extends KeyAdapter {
+
   private PreferenceHandler prefs;
   private float size;
   

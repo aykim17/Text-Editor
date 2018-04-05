@@ -10,6 +10,7 @@ import javax.swing.undo.*;
  * Handles logic for undoing typing
  */
 public class UndoHandler {
+
   private static UndoManager undoManager = new UndoManager();
 
   public static void addUndoCapability(JTextArea pane)

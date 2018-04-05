@@ -1,8 +1,8 @@
 package TextEditor;
 
-import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import javax.swing.*;
 
 /**
  * Code for saving file
@@ -21,10 +21,6 @@ public class SaveListener implements ActionListener {
 
   public void setSaved() {  // If we open a file, the save status, filename, and path are already set
     isSaved = true;
-  }
-
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
   }
 
   public void setFilePath(String filePath) {
@@ -55,6 +51,7 @@ public class SaveListener implements ActionListener {
       fw.write(text);
       fw.close();
     } catch (Exception ex) {
+      JOptionPane.showMessageDialog(TextEditorFrame.getTextArea(), "Could not save file!", "Error!", JOptionPane.WARNING_MESSAGE);
       ex.printStackTrace();
     }
   }
