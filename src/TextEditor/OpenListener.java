@@ -29,6 +29,17 @@ public class OpenListener implements ActionListener {
   }
 
   private void openFile(File file) {  // Reads text from input file and writes it to current session
+    try {
+      FileReader reader = new FileReader(file);
+      BufferedReader bufferedReader = new BufferedReader(reader);
+      TextEditorFrame.getTextArea().setText("");
+      String text;
+      while ((text = bufferedReader.readLine()) != null) {
+        String currentText = TextEditorFrame.getTextArea().getText();
+        TextEditorFrame.getTextArea().setText(currentText + text + "\n");
+      }
+    } catch (IOException e) {
 
+    }
   }
 }
