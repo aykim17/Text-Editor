@@ -31,12 +31,11 @@ public class SaveListener implements ActionListener {
     if (!isSaved) {
       JFileChooser chooser = new JFileChooser();
       int saveOption = chooser.showSaveDialog(TextEditorFrame.getTextArea());
-      fileName = chooser.getSelectedFile().getName();
-      filePath = chooser.getSelectedFile().getPath();
       // Double check that file name is not empty
       if (saveOption == JFileChooser.APPROVE_OPTION && fileName.trim().length() > 0) {
+        fileName = chooser.getSelectedFile().getName();
+        filePath = chooser.getSelectedFile().getPath();
         saveFile();
-        isSaved = true;
       }
     } else {
       saveFile();
@@ -50,9 +49,9 @@ public class SaveListener implements ActionListener {
       FileWriter fw = new FileWriter(file);
       fw.write(text);
       fw.close();
+      isSaved = true;
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(TextEditorFrame.getTextArea(), "Could not save file!", "Error!", JOptionPane.WARNING_MESSAGE);
-      ex.printStackTrace();
     }
   }
 }
