@@ -31,11 +31,17 @@ public class SaveListener implements ActionListener {
     if (!isSaved) {
       JFileChooser chooser = new JFileChooser();
       int saveOption = chooser.showSaveDialog(TextEditorFrame.getTextArea());
+
+      if (chooser.getSelectedFile() != null) {  // Prevent NullPointerException
+        fileName = chooser.getSelectedFile().getName();
+      }
+
       // Double check that file name is not empty
       if (saveOption == JFileChooser.APPROVE_OPTION && fileName.trim().length() > 0) {
-        fileName = chooser.getSelectedFile().getName();
         filePath = chooser.getSelectedFile().getPath();
         saveFile();
+      } else if (fileName.trim().length() == 0){
+        JOptionPane.showMessageDialog(TextEditorFrame.getTextArea(), "Filename can't be blank!", "Error!", JOptionPane.WARNING_MESSAGE);
       }
     } else {
       saveFile();

@@ -1,6 +1,7 @@
 package TextEditor;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -14,11 +15,12 @@ public class TextEditorFrame extends JFrame {
   public TextEditorFrame() {
     super("Text Editor");
     setAlwaysOnTop(true);
-    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     setSize(500, 300);
     setLocationRelativeTo(null);
     PreferenceHandler prefs = new PreferenceHandler();
 
+    handleWindowClosing();
     handleTextField();
     handleColorScheme();
     handleMenuBar();
@@ -68,5 +70,21 @@ public class TextEditorFrame extends JFrame {
 
     menuBar.add(file);
     setJMenuBar(menuBar);
+  }
+
+  private void handleWindowClosing() {
+    addWindowListener(new WindowAdapter() {
+
+      @Override
+      public void windowClosing(WindowEvent e) {
+        int confirmExit = JOptionPane.showConfirmDialog(TextEditorFrame.getTextArea(),
+                "Are you sure you want to exit?",
+                "EXIT", JOptionPane.YES_NO_OPTION);
+
+        if (confirmExit == JOptionPane.YES_OPTION) {
+          System.exit(0);
+        }
+      }
+    });
   }
 }

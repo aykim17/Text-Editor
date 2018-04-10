@@ -39,7 +39,7 @@ public class OpenListener implements ActionListener {
         TextEditorFrame.getTextArea().setText(currentText + text + "\n");
       }
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(TextEditorFrame.getTextArea(), "Could not save file!", "Error!", JOptionPane.WARNING_MESSAGE);
+      JOptionPane.showMessageDialog(TextEditorFrame.getTextArea(), "Could not open file!", "Error!", JOptionPane.WARNING_MESSAGE);
     }
   }
 }
